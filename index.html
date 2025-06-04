@@ -97,7 +97,6 @@
   </main>
 
   <script>
-    // Global error handler
     window.onerror = function (message, source, lineno, colno, error) {
       console.log('Global error caught via window.onerror:');
       console.log('Message:', message);
@@ -125,9 +124,9 @@
     let timerStarted = false;
 
     const sampleData = [
-      { name: 'Alice', age: 25 },
-      { name: 'Bob', age: 30 },
-      { name: 'Charlie', age: 35 }
+      { department: 'CSE', course_number: 110 },
+      { department: 'MGT', course_number: 12 },
+      { department: 'CSE', course_number: 158 }
     ];
 
     errorBtns.forEach((btn) => {
@@ -136,11 +135,11 @@
       btn.addEventListener('click', () => {
         switch (label) {
           case 'Console Log':
-            console.log('This is a console.log message with sample data:', sampleData);
+            console.log('Console log Demo', sampleData);
             break;
 
           case 'Console Error':
-            console.error('This is a console.error message');
+            console.error('Console Error Demo');
             break;
 
           case 'Console Count':
@@ -148,7 +147,7 @@
             break;
 
           case 'Console Warn':
-            console.warn('This is a console.warn message');
+            console.warn('Console Warn Button');
             break;
 
           case 'Console Assert':
@@ -160,17 +159,17 @@
             break;
 
           case 'Console Dir':
-            console.dir(document.body);
+            const dirButton = btn;
+            console.dir(dirButton);
             break;
 
           case 'Console dirxml':
-            console.dirxml(document.body);
+            const dirButtonXML = btn;
+            console.dirxml(dirButtonXML);
             break;
 
           case 'Console Group Start':
             console.group('Grouped Messages');
-            console.log('Message 1 inside group');
-            console.log('Message 2 inside group');
             break;
 
           case 'Console Group End':
@@ -200,14 +199,14 @@
             break;
 
           case 'Console Trace':
-            function a() { b(); }
-            function b() { c(); }
-            function c() { console.trace('Tracing stack'); }
-            a();
+            function deep() { deeper(); }
+            function deeper() { deepest(); }
+            function deepest() { console.trace('Tracing stack'); }
+            deep();
             break;
 
           case 'Trigger a Global Error':
-            nonexistentFunction();
+            boom();
             break;
 
           default:
